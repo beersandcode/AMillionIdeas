@@ -1,4 +1,9 @@
 AMillionIdeas/bin/
+
 AMillionIdeas/obj/
+AMillionIdeas/.vs/
+
 AMillionIdeas.Tests/obj/
-.vs/AMillionIdeas/v14
+.vs/
+AMillionIdeas/v14
+/
