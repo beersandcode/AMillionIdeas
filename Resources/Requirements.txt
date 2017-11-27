@@ -1,0 +1,31 @@
+IDEA
+Titulo: idea
+descripcion:
+Autor:
+fecha:
+Registrada: bool
+Colabratica: bool;
+likes
+categoria
+
+CATEGORIAS
+titulo:
+descripcion
+
+AUTOR
+nombre
+telefono
+email
+
+
+visualizar idea guardada
+rellenar nueva idea
+Borrar Idea
+Contactar con el usuario
+chat de mensajes
+votar por idea
+filtar ideas por categorias
+Loging.
+
+
+
