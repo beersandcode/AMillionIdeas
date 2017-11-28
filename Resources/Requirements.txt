@@ -26,6 +26,8 @@ chat de mensajes
 votar por idea
 filtar ideas por categorias
 Loging.
+Contador de ideas ocupadas y libres
+ordenar ideas por likes
 
 
 
