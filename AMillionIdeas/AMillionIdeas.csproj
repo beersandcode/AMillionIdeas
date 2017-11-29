@@ -149,6 +149,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Idea.cs">
+      <DependentUpon>AMillionIdeasModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="InfoUsers.cs">
       <DependentUpon>AMillionIdeasModel.tt</DependentUpon>
     </Compile>

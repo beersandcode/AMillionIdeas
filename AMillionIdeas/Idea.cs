@@ -15,24 +15,24 @@ namespace AMillionIdeas
 using System;
     using System.Collections.Generic;
     
-public partial class InfoUsers
+public partial class Idea
 {
 
-    public int Id { get; set; }
+    public System.Guid Id { get; set; }
 
-    public string UserName { get; set; }
+    public string Title { get; set; }
 
-    public string UserPass { get; set; }
+    public string Description { get; set; }
 
-    public string Email { get; set; }
+    public string Autor { get; set; }
 
-    public string PhoneNumber { get; set; }
+    public System.DateTime Created { get; set; }
 
-    public int Rol { get; set; }
+    public int Likes { get; set; }
 
-    public System.DateTime Date { get; set; }
+    public bool Registered { get; set; }
 
-    public string UserSalt { get; set; }
+    public Nullable<bool> Colaborative { get; set; }
 
 }
 
