@@ -12,7 +12,7 @@ namespace AMillionIdeas.Controllers
         // GET: BenchIdeas
         public ActionResult Index()
         {
-            List<IdeaViewModel> Model = new List<IdeaViewModel> ();
+            List<IdeaViewModel> Model  = new List<IdeaViewModel> ();
             
 
             return View(Model);
