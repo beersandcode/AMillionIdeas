@@ -45,11 +45,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -127,49 +127,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AMillionIdeasModel.Context.cs">
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfoUsersController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AMillionIdeasModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AMillionIdeasModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AMillionIdeasModel.cs">
+    <Compile Include="Models\AMillionIdeasModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AMillionIdeasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AMillionIdeasModel.Designer.cs">
+    <Compile Include="Models\AMillionIdeasModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AMillionIdeasModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BenchIdeasController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Idea.cs">
+    <Compile Include="Models\Ideas.cs">
       <DependentUpon>AMillionIdeasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="InfoUsers.cs">
+    <Compile Include="Models\InfoUsers.cs">
       <DependentUpon>AMillionIdeasModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\InfoUsersMAP.cs" />
     <Compile Include="Models\IdeaViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Crypto.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AMillionIdeasModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AMillionIdeasModel.edmx</DependentUpon>
-      <LastGenOutput>AMillionIdeasModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="AMillionIdeasModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AMillionIdeasModel.edmx</DependentUpon>
-      <LastGenOutput>AMillionIdeasModel.cs</LastGenOutput>
-    </Content>
     <Content Include="App_Data\AMillionIdeasDB.mdf" />
     <Content Include="App_Data\AMillionIdeasDB_log.ldf">
       <DependentUpon>AMillionIdeasDB.mdf</DependentUpon>
@@ -181,13 +173,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\AMillionIdeasModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AMillionIdeasModel.edmx</DependentUpon>
+      <LastGenOutput>AMillionIdeasModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AMillionIdeasModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AMillionIdeasModel.edmx</DependentUpon>
+      <LastGenOutput>AMillionIdeasModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="AMillionIdeasModel.edmx">
+    <EntityDeploy Include="Models\AMillionIdeasModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AMillionIdeasModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="AMillionIdeasModel.edmx.diagram">
+    <Content Include="Models\AMillionIdeasModel.edmx.diagram">
       <DependentUpon>AMillionIdeasModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -217,10 +219,16 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\InfoUsers\Create.cshtml" />
+    <Content Include="Views\InfoUsers\Delete.cshtml" />
+    <Content Include="Views\InfoUsers\Details.cshtml" />
+    <Content Include="Views\InfoUsers\Edit.cshtml" />
+    <Content Include="Views\InfoUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BenchIdeas\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

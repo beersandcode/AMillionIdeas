@@ -1,4 +1,6 @@
-﻿header {
+﻿
+
+/*header {
   display: flex;
   align-items: center;
   font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
@@ -8,7 +10,7 @@
   color: #fff;
   min-height: 10vh;
   text-align: center;
-}
+}*/
 
 ul {
   display: grid;
@@ -33,7 +35,7 @@ ul.weekdays {
 }
 
 ul.idea-grid li {
-  background-color: #eaeaea;
+  background-color: #eazeaea;
   border: 1px solid black;
   height: 12vw;
   max-height: 125px;
@@ -67,4 +69,33 @@ ul.day-grid li:nth-child(35) {
       font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
     text-align: center;
     }
+
+  .post-it-note {
+   padding: 2em;
+   background: #ffd800;
+   position: relative;
+   min-height: 10em;
+    }
+    .post-it-note:after {
+       content: "";
+       position: absolute;
+       bottom: -2em;
+       left: 0;
+       right: 2em;
+       border-width: 1em;
+       border-style: solid;
+       border-color: #ffd800;
+    }
+    .post-it-note:before {
+       content: "";
+       position: absolute;
+       bottom: -2em;
+       right: 0;
+       border-width: 2em 2em 0 0;
+       border-style: solid;
+       border-color: #b6ff00;
+    }
+
+
+
 }
