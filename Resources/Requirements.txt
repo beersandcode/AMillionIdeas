@@ -17,7 +17,20 @@ nombre
 telefono
 email
 
+LOGIN
+register new user
+hash function
+salt function 
+edit new user
+	add pass generator
+admin can see and edit all the users
+login - authentication
+manage different roles
 
+ADD SERVICES LAYER
+
+
+----------------------------------------------------------
 visualizar idea guardada
 rellenar nueva idea
 Borrar Idea
@@ -25,7 +38,6 @@ Contactar con el usuario
 chat de mensajes
 votar por idea
 filtar ideas por categorias
-Loging.
 Contador de ideas ocupadas y libres
 ordenar ideas por likes
 
