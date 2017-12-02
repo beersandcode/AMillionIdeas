@@ -7,11 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AMillionIdeas.Models;
+using AMillionIdeas.Security;
+using AMillionIdeas.Services;
 
 namespace AMillionIdeas.Controllers
 {
     public class InfoUsersController : Controller
     {
+        private readonly IDBServices _IDBServices = new DBServices(); 
+
         private AMillionIdeasDBEntities db = new AMillionIdeasDBEntities();
 
         // GET: InfoUsers
@@ -47,17 +51,28 @@ namespace AMillionIdeas.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserName,UserPass,Email,PhoneNumber,Rol,Date,UserSalt")] InfoUsers infoUsers)
         {
-            if (ModelState.IsValid)
+            var infoUserTemp = _IDBServices.GetInfoUserByNameContact(infoUsers.UserName);
+            if (infoUserTemp == null) // If it´s null means that there is no another user with that name
             {
-                //add data, salt, hash 
-
-                infoUsers.Date = DateTime.Now;
-                infoUsers.Rol = 1;
-                db.InfoUsers.Add(infoUsers);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    string salt = Crypto.getSalt();
+                    infoUsers.UserSalt = salt;
+                    string passEncrypt = Crypto.Hash(infoUsers.UserPass, salt);
+                    infoUsers.UserPass = passEncrypt;
+                    infoUsers.Date = DateTime.Now;
+                    infoUsers.Rol = 1;
+                    //db.InfoUsers.Add(infoUsers);
+                    _IDBServices.AddInfoUser(infoUsers);
+                    //db.SaveChanges();
+                    _IDBServices.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
             }
-
+            else
+            {
+                ViewBag.msg = "Name User in use";
+            }
             return View(infoUsers);
         }
 
