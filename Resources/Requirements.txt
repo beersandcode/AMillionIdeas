@@ -26,16 +26,20 @@ edit new user
 admin can see and edit all the users
 login - authentication
 manage different roles
+number of the wrong login - block account
+add password change option
+add user management (add menu options)
 
 ADD SERVICES LAYER
+** added
 
+MESSAGES (CHAT)
 
 ----------------------------------------------------------
 visualizar idea guardada
 rellenar nueva idea
 Borrar Idea
 Contactar con el usuario
-chat de mensajes
 votar por idea
 filtar ideas por categorias
 Contador de ideas ocupadas y libres
