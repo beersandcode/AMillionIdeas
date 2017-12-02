@@ -13,15 +13,36 @@ namespace AMillionIdeas.Controllers
         public ActionResult Index()
         {
             List<IdeaViewModel> Model  = new List<IdeaViewModel> ();
-            
+            IdeaViewModel idea = new IdeaViewModel();
+            idea.autor = "Javi";
+            idea.title = "Create a web page to create Ideas";
+            Model.Add(idea);
 
             return View(Model);
         }
 
-        // GET: BenchIdeas/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public ActionResult _partialproduct(int id)
         {
-            return View();
+
+            IdeaViewModel idea = new IdeaViewModel();
+            idea.autor = "Javi";
+            idea.title = "Create a web page to create Ideas";
+
+            return View("_IdeaModal",idea);
+
+        }
+
+
+
+        // GET: BenchIdeas/Details/5
+        public ActionResult Details()
+        {
+            IdeaViewModel idea = new IdeaViewModel();
+            idea.autor = "Javi";
+            idea.title = "Create a web page to create Ideas";
+
+            return PartialView("_IdeaModal", idea);
         }
 
         // GET: BenchIdeas/Create

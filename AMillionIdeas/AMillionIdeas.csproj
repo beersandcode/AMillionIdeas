@@ -172,8 +172,7 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\index.css" />
-    <Content Include="Content\ShowDataIdea.css" />
+    <Content Include="Content\BenchIdeas.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -232,6 +231,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\BenchIdeas\Index.cshtml" />
     <Content Include="Views\BenchIdeas\Create.cshtml" />
+    <Content Include="Views\BenchIdeas\_IdeaModal.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />

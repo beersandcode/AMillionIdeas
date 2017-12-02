@@ -4,11 +4,25 @@
 @{
     ViewBag.Title = "Index";
 }
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/BenchIdeas.css">
+</head>
+</br>
+</br>
+</br>
+</br>
+<div class="container">
+    
+    <ul class="idea-grid">
+        
+        @for (int i = 0; i < 105; i++)
+        {
+            <li><a href="#" data-toggle="modal" data-target="#myModal">pos @i</a></li>
+    
+            {Html.RenderAction("Details", "BenchIdeas");}
 
-<h2>Index</h2>
-<div>
-    IDEA INFO
+        }
+
 
 </div>
-
 
