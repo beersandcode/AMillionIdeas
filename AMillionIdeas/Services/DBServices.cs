@@ -33,6 +33,10 @@ namespace AMillionIdeas.Services
             db.Entry(infoUser).State = EntityState.Modified;
         }
 
+        public InfoUsers GetInfoUser(int? UserIdreported) 
+        {
+            return db.InfoUsers.Find(UserIdreported);
+        }
 
     }
 }

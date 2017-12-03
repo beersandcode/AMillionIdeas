@@ -15,6 +15,7 @@ namespace AMillionIdeas.Services
         InfoUsers GetInfoUserByNameContact(string nameContact);
         void AddInfoUser(InfoUsers infoUser);
         void ModifiedInfoUser(InfoUsers infoUser);
+        InfoUsers GetInfoUser(int? UserIdreported);
 
     }
 }

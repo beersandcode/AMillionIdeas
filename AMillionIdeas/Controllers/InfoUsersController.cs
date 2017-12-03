@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using AMillionIdeas.Models;
 using AMillionIdeas.Security;
 using AMillionIdeas.Services;
+using System.Web.Security;
 
 namespace AMillionIdeas.Controllers
 {
@@ -24,6 +25,22 @@ namespace AMillionIdeas.Controllers
             return View(db.InfoUsers.ToList());
         }
 
+        //GET: InfoUsers/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+        //    InfoUsers infoUsers = db.InfoUsers.Find(id);
+        //    if (infoUsers == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(infoUsers);
+        //}
+
         // GET: InfoUsers/Details/5
         public ActionResult Details(int? id)
         {
@@ -31,13 +48,30 @@ namespace AMillionIdeas.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InfoUsers infoUsers = db.InfoUsers.Find(id);
-            if (infoUsers == null)
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
             {
-                return HttpNotFound();
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                string infoUserIdRolNewM = ticket.UserData.ToString();
+                // It get user ID value from infoUserIdRolNewM
+                int userId = Int32.Parse(infoUserIdRolNewM.Substring(0, infoUserIdRolNewM.IndexOf("|")));
+                int roll = Int32.Parse(infoUserIdRolNewM.Substring((infoUserIdRolNewM.IndexOf("|")) + 1, (infoUserIdRolNewM.IndexOf("||") - infoUserIdRolNewM.IndexOf("|") - 1)));
+                if ((id == userId) || (roll == 1))     // This way, only the user with hus id can see his details
+                {
+                    InfoUsers infoUser = _IDBServices.GetInfoUser(id);
+                    return View(infoUser);
+                }
+                else
+                {
+                    return HttpNotFound();  //TODO: add view reject or error
+                }
             }
-            return View(infoUsers);
+            return HttpNotFound();
         }
+
+
+
+
 
         // GET: InfoUsers/Create
         public ActionResult Create()
