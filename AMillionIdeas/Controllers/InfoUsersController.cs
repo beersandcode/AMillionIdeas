@@ -75,7 +75,7 @@ namespace AMillionIdeas.Controllers
                     string passEncrypt = Crypto.Hash(infoUsers.UserPass, salt);
                     infoUsers.UserPass = passEncrypt;
                     infoUsers.Date = DateTime.Now;
-                    infoUsers.Rol = 2; // Rol 1 = superUser, Rol 2 = admin, Rol 3 = common user
+                    infoUsers.Rol = 3; // Rol 1 = superUser, Rol 2 = admin, Rol 3 = common user
                     //db.InfoUsers.Add(infoUsers);
                     _IDBServices.AddInfoUser(infoUsers);
                     //db.SaveChanges();
