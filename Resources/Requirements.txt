@@ -26,6 +26,8 @@ edit new user
 admin can see and edit all the users
 login - authentication
 manage different roles
+	-  add this annotation in specific voids [RoleAuthorization(Roles = "1")]
+	-  add condicionals (  if ((id == userId) || (roll == 1))  ) to control this
 number of the wrong login - block account
 add password change option
 add user management (add menu options)

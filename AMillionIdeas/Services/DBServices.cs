@@ -43,6 +43,10 @@ namespace AMillionIdeas.Services
             return db.Ideas.Where(i => i.Position == pos).FirstOrDefault();
         }
 
+        public InfoUsers GetInfoUser(int? UserIdreported) 
+        {
+            return db.InfoUsers.Find(UserIdreported);
+        }
 
     }
 }

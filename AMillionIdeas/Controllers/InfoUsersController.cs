@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using AMillionIdeas.Models;
 using AMillionIdeas.Security;
 using AMillionIdeas.Services;
+using System.Web.Security;
 
 namespace AMillionIdeas.Controllers
 {
@@ -31,12 +32,25 @@ namespace AMillionIdeas.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            InfoUsers infoUsers = db.InfoUsers.Find(id);
-            if (infoUsers == null)
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
             {
-                return HttpNotFound();
+                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                string infoUserIdRolNewM = ticket.UserData.ToString();
+                // It get user ID value from infoUserIdRolNewM
+                int userId = Int32.Parse(infoUserIdRolNewM.Substring(0, infoUserIdRolNewM.IndexOf("|")));
+                int roll = Int32.Parse(infoUserIdRolNewM.Substring((infoUserIdRolNewM.IndexOf("|")) + 1, (infoUserIdRolNewM.IndexOf("||") - infoUserIdRolNewM.IndexOf("|") - 1)));
+                if ((id == userId) || (roll == 1))     // This way, only the user with has id can see his details
+                {
+                    InfoUsers infoUser = _IDBServices.GetInfoUser(id);
+                    return View(infoUser);
+                }
+                else
+                {
+                    return HttpNotFound();  //TODO: add view reject or error
+                }
             }
-            return View(infoUsers);
+            return HttpNotFound();
         }
 
         // GET: InfoUsers/Create
@@ -61,7 +75,7 @@ namespace AMillionIdeas.Controllers
                     string passEncrypt = Crypto.Hash(infoUsers.UserPass, salt);
                     infoUsers.UserPass = passEncrypt;
                     infoUsers.Date = DateTime.Now;
-                    infoUsers.Rol = 1;
+                    infoUsers.Rol = 3; // Rol 1 = superUser, Rol 2 = admin, Rol 3 = common user
                     //db.InfoUsers.Add(infoUsers);
                     _IDBServices.AddInfoUser(infoUsers);
                     //db.SaveChanges();
@@ -131,6 +145,18 @@ namespace AMillionIdeas.Controllers
             db.InfoUsers.Remove(infoUsers);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ChangePass(int? id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePass(int id, string oldPass, string newPass, string newPass2)
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)
