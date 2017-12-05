@@ -34,7 +34,7 @@ public partial class Ideas
 
     public Nullable<bool> Colaborative { get; set; }
 
-    public Nullable<int> Position { get; set; }
+    public int Position { get; set; }
 
 }
 

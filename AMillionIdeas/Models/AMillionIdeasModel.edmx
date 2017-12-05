@@ -17,7 +17,7 @@
           <Property Name="Likes" Type="int" Nullable="false" />
           <Property Name="Registered" Type="bit" Nullable="false" />
           <Property Name="Colaborative" Type="bit" />
-          <Property Name="Position" Type="int" />
+          <Property Name="Position" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="InfoUsers">
           <Key>
@@ -52,7 +52,7 @@
           <Property Name="Likes" Type="Int32" Nullable="false" />
           <Property Name="Registered" Type="Boolean" Nullable="false" />
           <Property Name="Colaborative" Type="Boolean" />
-          <Property Name="Position" Type="Int32" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="InfoUsers">
           <Key>
