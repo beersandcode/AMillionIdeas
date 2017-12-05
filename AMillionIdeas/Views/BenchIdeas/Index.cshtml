@@ -1,4 +1,4 @@
-﻿@model List<AMillionIdeas.Models.IdeaViewModel>
+﻿@model AMillionIdeas.Models.IdeasBoardViewModel
 
 
 @{
@@ -15,13 +15,34 @@
     
     <ul class="idea-grid">
         
-        @for (int i = 0; i < 105; i++)
+        
+        @*@for (int? posIdea = 0; posIdea < Model.MaxNumberOfIdeas; posIdea++)
         {
-            <li><a href="#" data-toggle="modal" data-target="#myModal">pos @i</a></li>
-    
-            {Html.RenderAction("Details", "BenchIdeas");}
+            <li><a href="#" data-toggle="modal" data-target="#myModal">pos @posIdea</a></li>
 
-        }
+            //foreach (var idea in Model.ListIdeas)
+            //{
+            if (Model.UsedPositions.Contains(posIdea))
+            {
+              //  { Html.RenderAction("_partialProduct", "BenchIdeas", posIdea); }
+
+            }
+            else
+            {
+                //render partial  to create in that position a new Idea
+            }
+            { Html.RenderAction("_partialProduct", "BenchIdeas", 2); }
+        }*@
+
+@for (int i = 0; i < 105; i++)
+{
+    <li><a href="#" data-toggle="modal" data-target="#myModal">pos @i</a></li>
+    if (Model.UsedPositions.Contains(i))
+    {
+        { Html.RenderAction("Details", "BenchIdeas"); }
+
+    }
+}
 
 
 </div>

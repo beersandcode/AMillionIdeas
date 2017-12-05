@@ -33,6 +33,16 @@ namespace AMillionIdeas.Services
             db.Entry(infoUser).State = EntityState.Modified;
         }
 
+        public List<Ideas> GetAllIdeas()
+        {
+            return db.Ideas.ToList();
+        }
+
+        public Ideas GetIdeaByPosition(int pos)
+        {
+            return db.Ideas.Where(i => i.Position == pos).FirstOrDefault();
+        }
+
 
     }
 }

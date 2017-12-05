@@ -155,6 +155,7 @@
     <Compile Include="Models\Ideas.cs">
       <DependentUpon>AMillionIdeasModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IdeasBoardViewModel.cs" />
     <Compile Include="Models\InfoUsers.cs">
       <DependentUpon>AMillionIdeasModel.tt</DependentUpon>
     </Compile>

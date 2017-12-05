@@ -16,5 +16,8 @@ namespace AMillionIdeas.Services
         void AddInfoUser(InfoUsers infoUser);
         void ModifiedInfoUser(InfoUsers infoUser);
 
+        List<Ideas> GetAllIdeas();
+        Ideas GetIdeaByPosition(int pos);
+
     }
 }
