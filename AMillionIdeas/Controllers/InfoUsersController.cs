@@ -156,7 +156,47 @@ namespace AMillionIdeas.Controllers
         [HttpPost]
         public ActionResult ChangePass(int id, string oldPass, string newPass, string newPass2)
         {
-            return View();
+            ViewBag.id = id;
+            InfoUsers infoUser = new InfoUsers();
+            //infoUser = db.InfoUsers.Find(id);
+            infoUser = _IDBServices.GetInfoUser(id);
+            string salt = infoUser.UserSalt;
+            string oldPassEncrypt = Crypto.Hash(oldPass, salt);
+            salt = Crypto.getSalt();
+            string passNewEncrypt = Crypto.Hash(newPass, salt);
+            string passNew2Encrypt = Crypto.Hash(newPass2, salt);
+            if (oldPassEncrypt == infoUser.UserPass)
+            {
+                if (oldPassEncrypt == passNewEncrypt)
+                {
+                    ViewBag.msgPass = "The same password";
+                    return View();
+                }
+                else
+                {
+                    if (passNewEncrypt == passNew2Encrypt)
+                    {
+                        infoUser.UserSalt = salt;
+                        infoUser.UserPass = passNewEncrypt;
+                        //db.Entry(infoUser).State = EntityState.Modified;
+                        _IDBServices.ModifiedInfoUser(infoUser);
+                        //db.SaveChanges();
+                        _IDBServices.SaveChanges();
+                        return RedirectToAction("Logout", "Login");
+                    }
+                    else
+                    {
+                        ViewBag.msgPass = "It´s not the same password";
+                        return View();
+                    }
+
+                }
+            }
+            else
+            {
+                ViewBag.msgPass = "Wrong Password";
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)
