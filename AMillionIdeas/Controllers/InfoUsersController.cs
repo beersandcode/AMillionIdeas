@@ -27,6 +27,41 @@ namespace AMillionIdeas.Controllers
             return View(db.InfoUsers.ToList());
         }
 
+        // GET: InfoUsers/AddUser   // Only the admin can use this method, the dofferent is that can set roles
+        [RoleAuthorization(Roles = "1")]
+        public ActionResult AddUser()
+        {
+            return View();
+        }
+
+        // POST: InfoUsers/AddUser
+        [RoleAuthorization(Roles = "1")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddUser([Bind(Include = "Id,UserName,UserPass,Email,PhoneNumber,rol")] InfoUsers infoUser)
+        {
+            var infoUserTemp = _IDBServices.GetInfoUserByNameContact(infoUser.UserName);
+            if (infoUserTemp == null) // If it´s null means that there is no another user with that name
+            {
+                if (ModelState.IsValid)
+                {
+                    string salt = Crypto.getSalt();
+                    infoUser.UserSalt = salt;
+                    string passEncrypt = Crypto.Hash(infoUser.UserPass, salt);
+                    infoUser.UserPass = passEncrypt;
+                    infoUser.Date = DateTime.Now;
+                    _IDBServices.AddInfoUser(infoUser);
+                    _IDBServices.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                ViewBag.msg = "Name User in use";
+            }
+            return View(infoUser);
+        }
+
         // GET: InfoUsers/Details/5
         public ActionResult Details(int? id)
         {

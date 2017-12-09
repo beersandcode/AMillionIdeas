@@ -243,6 +243,7 @@
     <Content Include="Views\BenchIdeas\Create.cshtml" />
     <Content Include="Views\BenchIdeas\_IdeaModal.cshtml" />
     <Content Include="Views\InfoUsers\ChangePass.cshtml" />
+    <Content Include="Views\InfoUsers\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup />
