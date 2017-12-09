@@ -10,6 +10,7 @@ using AMillionIdeas.Models;
 using AMillionIdeas.Security;
 using AMillionIdeas.Services;
 using System.Web.Security;
+using AMillionsIdeas.Security;
 
 namespace AMillionIdeas.Controllers
 {
@@ -20,6 +21,7 @@ namespace AMillionIdeas.Controllers
         private AMillionIdeasDBEntities db = new AMillionIdeasDBEntities();
 
         // GET: InfoUsers
+        [RoleAuthorization(Roles = "1")]
         public ActionResult Index()
         {
             return View(db.InfoUsers.ToList());
