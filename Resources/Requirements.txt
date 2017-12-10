@@ -36,6 +36,11 @@ ADD SERVICES LAYER
 ** added
 
 MESSAGES (CHAT)
+send
+show
+    - pagination
+notifications
+
 
 ----------------------------------------------------------
 visualizar idea guardada
